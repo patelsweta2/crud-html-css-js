@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1 class="header">My ToDo</h1>
+      </nav>
+    </header>
+    <main>
+      <div class="content">
+        <div class="column1">
+          <h3 class="header1">Create User</h3>
+          <div class="form">
+            <div class="row row1">
+              <label for="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
+            <div class="row row2">
+              <label for="address">Address:</label>
+              <textarea
+                id="address"
+                name="address"
+                class="address"
+                placeholder="Enter your address"
+                required
+                rows="4"
+                cols="30"
+              ></textarea>
+            </div>
+            <div class="row row3">
+              <label onclick="toggleDropdown()">Field of Interest:</label>
+              <div
+                id="dropdown-options"
+                class="dropdown-content"
+                style="display: none"
+              >
+                <label
+                  ><input type="checkbox" value="Web Development" />Web
+                  Development</label
+                ><br />
+                <label
+                  ><input type="checkbox" value="Data Science" />Data
+                  Science</label
+                ><br />
+                <label
+                  ><input type="checkbox" value="App Development" />App
+                  Development</label
+                ><br />
+                <label
+                  ><input
+                    type="checkbox"
+                    value="Artificial Intelligence"
+                  />Artificial Intelligence</label
+                ><br />
+                <label
+                  ><input type="checkbox" value="Cyber Security" />Cyber
+                  Security</label
+                ><br />
+                <label
+                  ><input type="checkbox" value="Networking" />Networking</label
+                ><br />
+                <label
+                  ><input type="checkbox" value="Manual Tester" />Manual
+                  Tester</label
+                ><br />
+                <label
+                  ><input type="checkbox" value="Management" />Management</label
+                ><br />
+              </div>
+            </div>
+            <div class="row row4">
+              <label>Gender:</label>
+              <select id="gender" name="gender">
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="others">Others</option>
+              </select>
+            </div>
+            <div class="row row5">
+              <label for="age">Age:</label>
+              <input
+                type="number"
+                id="age"
+                name="age"
+                min="0"
+                max="80"
+                placeholder="Enter your age: "
+              />
+            </div>
+            <button>Submit</button>
+          </div>
+        </div>
+        <hr class="verticalline" />
+        <div class="column2">
+            <h4>USERS</h4>
+            <div></div>
+        </div>
+      </div>
+    </main>
+    <script src="./index.js"></script>
+  </body>
+</html>
