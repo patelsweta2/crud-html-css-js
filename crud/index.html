@@ -47,36 +47,60 @@
                 style="display: none"
               >
                 <label
-                  ><input type="checkbox" value="Web Development" />Web
-                  Development</label
+                  ><input
+                    type="checkbox"
+                    name="interest"
+                    value="Web Development"
+                  />Web Development</label
                 ><br />
                 <label
-                  ><input type="checkbox" value="Data Science" />Data
-                  Science</label
+                  ><input
+                    type="checkbox"
+                    name="interest"
+                    value="Data Science"
+                  />Data Science</label
                 ><br />
                 <label
-                  ><input type="checkbox" value="App Development" />App
-                  Development</label
+                  ><input
+                    type="checkbox"
+                    name="interest"
+                    value="App Development"
+                  />App Development</label
                 ><br />
                 <label
                   ><input
                     type="checkbox"
                     value="Artificial Intelligence"
+                    name="interest"
                   />Artificial Intelligence</label
                 ><br />
                 <label
-                  ><input type="checkbox" value="Cyber Security" />Cyber
-                  Security</label
+                  ><input
+                    type="checkbox"
+                    name="interest"
+                    value="Cyber Security"
+                  />Cyber Security</label
                 ><br />
                 <label
-                  ><input type="checkbox" value="Networking" />Networking</label
+                  ><input
+                    type="checkbox"
+                    name="interest"
+                    value="Networking"
+                  />Networking</label
                 ><br />
                 <label
-                  ><input type="checkbox" value="Manual Tester" />Manual
-                  Tester</label
+                  ><input
+                    type="checkbox"
+                    name="interest"
+                    value="Manual Tester"
+                  />Manual Tester</label
                 ><br />
                 <label
-                  ><input type="checkbox" value="Management" />Management</label
+                  ><input
+                    type="checkbox"
+                    name="interest"
+                    value="Management"
+                  />Management</label
                 ><br />
               </div>
             </div>
@@ -100,13 +124,25 @@
                 placeholder="Enter your age: "
               />
             </div>
-            <button>Submit</button>
+            <button id="submitBtn">Submit</button>
           </div>
         </div>
         <hr class="verticalline" />
         <div class="column2">
-            <h4>USERS</h4>
-            <div></div>
+          <h4>USERS</h4>
+          <table id="userTable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Interests</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </div>
       </div>
     </main>
