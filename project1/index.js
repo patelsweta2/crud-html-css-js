@@ -5,18 +5,27 @@ const redo = document.getElementById("redo");
 const undoStack = [];
 const redoStack = [];
 
-const addInput = (input) => {
-  undoStack.push(input);
-  redoStack = [];
-};
+let debounceTimer = null;
 
+const debounce = (func,delay) => {
+    return function(){
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func(), delay);
+    }
+}
+
+const addInput = () => {
+  undoStack.push(notebook.innerHTML);
+  redoStack.length = 0;
+};
+const debouncedSavedTime = debounce(addInput,500);
 notebook.addEventListener("input", () => {
-  addInput(notebook.innerHTML);
+    debouncedSavedTime();
 });
 undo.addEventListener("click", () => {
-  if (undoStack.length > 0) {
+  if (undoStack.length > 1) {
     redoStack.push(undoStack.pop());
-    notebook.innerHTML = undoStack[undoStack.length - 1];
+    notebook.innerHTML = undoStack[undoStack.length-1];
   }
 });
 
@@ -27,3 +36,5 @@ redo.addEventListener("click", () => {
         notebook.innerHTML = nextState;
     }
 });
+
+undoStack.push(notebook.innerHTML)
