@@ -27,37 +27,37 @@ function validation() {
   return null;
 }
 
-function saveToLocalStorage(){
-    localStorage.setItem("formData", JSON.stringify(formDataArray))
+function saveToLocalStorage() {
+  localStorage.setItem("formData", JSON.stringify(formDataArray));
 }
-saveToLocalStorage(); 
+saveToLocalStorage();
 renderTable();
-function renderTable(){
-    tableBody.innerHTML = "";
-    formDataArray.forEach((data,index) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
+function renderTable() {
+  tableBody.innerHTML = "";
+  formDataArray.forEach((data, index) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
         <td>${data.name}</td>
         <td>${data.address}</td>
         <td>${data.gender}</td>
         <td>${data.age}</td>
-        <td>${data.interests.join('')}</td>
+        <td>${data.interests.join("")}</td>
         <td>
         <button onclick='editData(${index})'>Edit</button>
         <button onclick='deleteData(${index})'>Delete</button>
         </td>
-        ;`
-        tableBody.appendChild(row)
-    })
+        ;`;
+    tableBody.appendChild(row);
+  });
 }
 let editIndex = -1;
 function handleFormSubmit(e) {
   e.preventDefault();
   let errorMessage = validation();
   if (errorMessage) {
-    alert(errorMessage); 
+    alert(errorMessage);
     return;
-}
+  }
   let formData = {
     name: name.value.trim(),
     address: address.value.trim(),
@@ -67,42 +67,47 @@ function handleFormSubmit(e) {
       document.querySelectorAll('input[name="interest"]:checked')
     ).map((el) => el.value),
   };
-  if(editIndex === -1){
+  if (editIndex === -1) {
     formDataArray.push(formData);
-  }else {
-    formDataArray[index] = formData;
+  } else {
+    formDataArray[editIndex] = formData;
     editIndex = -1;
-    document.getElementById("submitBtn").innerText = "submit"
+    document.getElementById("submitBtn").innerText = "submit";
   }
-  saveToLocalStorage(); 
+  saveToLocalStorage();
   renderTable();
-  name.value = '';
-  address.value = '';
-  gender.value = '';
-  age.value = '';
-  document.querySelectorAll('input[name="interest"]:checked').forEach(el => el.checked = false)
-};
-
-function deleteData(index){
-    alert("Are you sure you want to delete?")
-    formDataArray.splice(index,1);
-    saveToLocalStorage();
-    renderTable();
+  name.value = "";
+  address.value = "";
+  gender.value = "";
+  age.value = "";
+  document
+    .querySelectorAll('input[name="interest"]:checked')
+    .forEach((el) => (el.checked = false));
 }
 
-function editData(index){
-    const data = formDataArray[index];
-    name.value = data.name;
-    address.value = data.address;
-    age.value = data.age;
-    document.querySelectorAll('input[name="interest"]').forEach(input => {
-        input.checked = data.interests.includes(input.value)
-    });
-    document.querySelectorAll("input[name='gender']").forEach(input => {
-        input.checked = input.value.toLowerCase() === data.gender.toLowerCase();
-    });
-    editIndex = index; 
-    document.getElementById("submitBtn").innerText = "Update";
+function deleteData(index) {
+  alert("Are you sure you want to delete?");
+  formDataArray.splice(index, 1);
+  saveToLocalStorage();
+  renderTable();
 }
 
-document.getElementById("submitBtn").addEventListener("click", handleFormSubmit)
+function editData(index) {
+  const data = formDataArray[index];
+  name.value = data.name;
+  address.value = data.address;
+  age.value = data.age;
+
+  document.getElementById("gender").value = data.gender;
+
+  document.querySelectorAll('input[name="interest"]').forEach((input) => {
+    input.checked = data.interests.includes(input.value);
+  });
+
+  editIndex = index;
+  document.getElementById("submitBtn").innerText = "Update";
+}
+
+document
+  .getElementById("submitBtn")
+  .addEventListener("click", handleFormSubmit);

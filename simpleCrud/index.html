@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div>
+      <input id="task" type="text" placeholder="Create your task.." />
+      <button id="submit" type="submit">Submit</button>
+    </div>
+    <div id="task-list"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const taskInput = document.getElementById("task");
+        const button = document.getElementById("submit");
+        const taskList = document.getElementById("task-list");
+        let editTaskId = null; 
+
+        button.addEventListener("click", () => {
+          const taskVal = taskInput.value.trim();
+          if (taskVal !== '') {
+            if (editTaskId) {
+              const existingTask = document.getElementById(editTaskId);
+              existingTask.querySelector("span").textContent = taskVal;
+              editTaskId = null; 
+              button.textContent = "Submit"; 
+            } else {
+              const uniqueId = "task" + Date.now();
+
+              const taskItem = document.createElement("div");
+              taskItem.id = uniqueId;
+              taskItem.classList.add("task-item");
+
+              const taskText = document.createElement("span");
+              taskText.textContent = taskVal;
+
+              const editButton = document.createElement("button");
+              editButton.textContent = "Edit";
+              editButton.addEventListener("click", () => editTask(uniqueId));
+
+              const deleteButton = document.createElement("button");
+              deleteButton.textContent = "Delete";
+              deleteButton.addEventListener("click", () => deleteTask(uniqueId));
+
+              taskItem.appendChild(taskText);
+              taskItem.appendChild(editButton);
+              taskItem.appendChild(deleteButton);
+              taskList.appendChild(taskItem);
+            }
+
+            taskInput.value = "";
+          }
+        });
+
+        function editTask(taskId) {
+          const taskItem = document.getElementById(taskId);
+          const taskText = taskItem.querySelector("span").textContent;
+          taskInput.value = taskText;
+          editTaskId = taskId; 
+          button.textContent = "Update"; 
+        }
+
+        function deleteTask(taskId) {
+          const taskItem = document.getElementById(taskId);
+          taskItem.remove();
+          if (editTaskId === taskId) {
+            editTaskId = null;
+            button.textContent = "Submit"; 
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

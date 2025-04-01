@@ -18,7 +18,7 @@ const addInput = () => {
   undoStack.push(notebook.innerHTML);
   redoStack.length = 0;
 };
-const debouncedSavedTime = debounce(addInput,500);
+const debouncedSavedTime = debounce(addInput,0);
 notebook.addEventListener("input", () => {
     debouncedSavedTime();
 });
